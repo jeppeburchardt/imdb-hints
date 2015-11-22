@@ -1,0 +1,20 @@
+{
+  "name": "imdb-hints",
+  "version": "0.0.0",
+  "authors": [
+    "kosmobot <jeppe@burchardt.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "~1.0.8",
+    "ajax": "~0.0.11"
+  }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IMDB HINTS</title>
+	<script src="bower_components/ajax/dist/ajax.min.js"></script>
+	<script src="bower_components/vue/dist/vue.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div id="app">
+		
+		<section v-if="matches.length > 1 && this.selectedMovies.length > 1">
+			<header>{{matches.length}} actors are starred in selected movies, add another...</header>
+		</section>
+
+		<section v-if="matches.length == 0 && this.selectedMovies.length > 1">
+			<header>None of the actors are starred in both movies.</header>
+		</section>
+		<div v-else>
+			<section v-if="matches.length != 1">
+				<header>Name a move starring the actor</header>
+				<div class="input-wrap">
+					<input type="text" v-model="searchInput" v-on:keyup="searchInputChagne" />
+				</div>
+				<ul class="pop list">
+					<li v-for="movie in searchResults">
+						<a href="#" v-on:click="selectMovie(movie)">{{movie.title}}</a>
+					</li>
+				</ul>
+			</section>
+		</div>
+
+		<section v-if="matches.length != 1 && selectedMovies.length > 0">
+			<header class="header">Selected movies</header>
+			<ul class="list">
+				<li v-for="movie in selectedMovies">{{movie.title}}
+					<a href="#" v-on:click="deselectMovie(movie)" class="right t-delete">remove</a>
+					<!-- <ul v-for="actor in movie.actors">
+						<li><small>{{actor}}</small></li>
+					</ul> -->
+				</li>
+			</ul>
+		</section>
+
+		<section v-if="matches.length == 1">
+			<header class="t-center padded">Only one actor is starred in the selected movies</header>
+			<div class="t-center t-large padded"><strong>{{revealedName}}</strong></div>
+			<div class="t-center padded"><a href="#" v-on:click="showCharacter">Show a character</a></div>
+		</section>
+
+
+	</div>
+	<script src="src/app.js"></script>
+</body>
+</html>
